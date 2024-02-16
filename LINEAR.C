@@ -10,12 +10,12 @@ void main(){
 	scanf("%d",&key);
 	for(i=0;i<n;i++){
 		if(a[i]==key){
-			pos=1;
+			pos=i;
 			break;
 		}
 		}
-	if(pos==1)
-		printf("Element %d found at  %d",key,i+1);
+	if(pos>=0)
+		printf("Element %d found at the index  %d",key,pos);
 	else
 		printf("Element not found");
 }
