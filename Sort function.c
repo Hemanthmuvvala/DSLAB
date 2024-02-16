@@ -11,8 +11,8 @@ int i,j;
 for(i=0;i<n;i++)
 for(j=i+1;j<n;j++)
 {
-if(ar[i]<ar[j+1])
-swap(&ar[i],&ar[j+1]);
+if(ar[i]>ar[j])
+swap(&ar[i],&ar[j]);
 }
 for(i=0;i<n;i++)
 printf("%d",ar[i]);
