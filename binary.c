@@ -26,7 +26,7 @@ printf("enter the elements of array");
 for(i=0;i<n;i++)
 scanf("%d",&ar[i]);
 sort(ar,n);
-int start=0,end,mid,pos=-1,key;
+int start=0,end=n-1,mid,pos=-1,key;
 printf("enter the key");
 scanf("%d",&key);
 
@@ -35,18 +35,30 @@ while(start<=end)
 mid=(start+end)/2;
 		if(key==ar[mid])
 	{
-		printf("the key is found at %d",mid+1);
+		pos=mid+1;
 		break;
 	}
 		else if(key<ar[mid])
 			end=mid-1;
-		else if(key>ar[mid])
+		else 
 		start=mid+1;
-	else 
-	printf("the key is not found");
 
 
 
-}
 
 }
+if(pos>=0)
+printf("%d",pos);
+else
+printf("xx");
+}
+
+
+
+
+
+
+
+
+
+
