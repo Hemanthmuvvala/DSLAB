@@ -27,7 +27,7 @@ for(i=0;i<n;i++)
 scanf("%d",&ar[i]);
 sort(ar,n);
 int start=0,end=n-1,mid,pos=-1,key;
-printf("enter the key");
+printf("enter the key to find the position");
 scanf("%d",&key);
 
 while(start<=end)
@@ -48,9 +48,9 @@ mid=(start+end)/2;
 
 }
 if(pos>=0)
-printf("%d",pos);
+printf("the key %d is found at the position=%d",key,pos);
 else
-printf("xx");
+printf("the key is not found");
 }
 
 
