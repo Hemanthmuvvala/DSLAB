@@ -25,4 +25,5 @@ printf("enter the elements of array");
 for(i=0;i<n;i++)
 scanf("%d",&ar[i]);
 sort(ar,n);
+  printf("thr array after sorting");
 }
