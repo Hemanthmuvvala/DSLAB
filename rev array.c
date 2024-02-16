@@ -7,6 +7,7 @@ printf(" The reversed array");
 for(int i=n;i>=0;i--)
 {
 printf("%d\t",arr[i]);
+  printf("\n");
 }
 
 }
