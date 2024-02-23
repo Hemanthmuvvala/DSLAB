@@ -10,11 +10,7 @@ void printarr(int ar[],int n)
     for(int i=0; i<n; i++)
         printf("%d\n",ar[i]);
 }
-void swap(int *a,int *b) {
-    int temp=*a;
-    *a=*b;
-    *b=temp;
-}
+
 void sort(int a[],int n)
 {
     int i,j,key;
