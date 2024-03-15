@@ -5,9 +5,9 @@ struct node {
     struct node *next;
     struct node *pre;
 };
-void create_node(struct node**head,int d)
+void create_node(struct node **head,int d)
 {
-    struct node temp=(struct node)malloc(sizeof(struct node*));
+    struct node*temp=(struct node*)malloc(sizeof(struct node*));
     temp->data=d;
     temp->pre=NULL;
     temp->next=NULL;
@@ -89,7 +89,8 @@ void insert_at_pos(struct node *head,int pos,int d)
     }
     if(ptr->next==NULL)
     {
-insert_at_end(head);
+        ptr->next=temp;
+        temp->pre=ptr;
     }
     else {
         ptr2=ptr->next;
@@ -128,12 +129,37 @@ struct node *del_at_end(struct node*head)
         free(ptr);
 
     }
-return head;
+    return head;
+}
+struct node *del_at_pos(struct node *head,int pos)
+{   
+    struct node*ptr=head;
+    struct node*ptr1,*ptr2;
+    
+    pos--;
+        while(pos!=0)
+        {
+            ptr=ptr->next;
+            pos--;
+        }
+    if(head==NULL)
+        printf("THERE ARE NO ELEMNTS IN THE LIST");
+    
+    else
+    {   
+        ptr1=ptr->pre;
+        ptr2=ptr->next;
+        ptr1->next=ptr2;
+        ptr2->pre=ptr1;
+        free(ptr);
+    }
+    return head;
 }
 int main()
 {
-    struct node *head;
+    struct node *head=NULL;
     int size;
+    head=(struct node*)malloc(sizeof(struct node*));
     create_node(&head,24);
     printf("%d",head->data);
     head=insert_at_beg(head,45);
@@ -147,6 +173,8 @@ int main()
     head=delete_at_beg(head);
     show(head);
     head=del_at_end(head);
+    show(head);
+    head=del_at_pos(head,3);
     show(head);
 
 }
