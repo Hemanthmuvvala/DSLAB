@@ -132,21 +132,22 @@ struct node *del_at_end(struct node*head)
     return head;
 }
 struct node *del_at_pos(struct node *head,int pos)
-{   
+{
     struct node*ptr=head;
     struct node*ptr1,*ptr2;
-    
     pos--;
-        while(pos!=0)
-        {
-            ptr=ptr->next;
-            pos--;
-        }
+    while(pos!=0)
+    {
+        ptr=ptr->next;
+        pos--;
+    }
     if(head==NULL)
         printf("THERE ARE NO ELEMNTS IN THE LIST");
-    
+    else if(ptr->next==NULL)
+        del_at_end(head);
     else
-    {   
+    {
+
         ptr1=ptr->pre;
         ptr2=ptr->next;
         ptr1->next=ptr2;
@@ -170,11 +171,11 @@ int main()
     printf("%d",size);
     insert_at_pos(head,4,93);
     show(head);
-    head=delete_at_beg(head);
-    show(head);
-    head=del_at_end(head);
-    show(head);
-    head=del_at_pos(head,3);
+    //head=delete_at_beg(head);
+    //show(head);
+    //head=del_at_end(head);
+    //show(head);
+    head=del_at_pos(head,4);
     show(head);
 
 }
