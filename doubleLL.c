@@ -22,7 +22,7 @@ void show(struct node *head)
 
         return;
     }
-    printf("The elements in the list are:");
+    printf("\nThe elements in the list are:");
     struct node *temp=head;
     while(temp!=NULL)
     {
@@ -75,33 +75,43 @@ struct node* insert_at_end(struct node *head, int d)
 }
 void insert_at_pos(struct node *head,int pos,int d)
 {
+  int size=count_of_nodes(head);
     struct node *temp,*ptr=head;
     struct node *ptr2=NULL;
     temp=(struct node*)malloc(sizeof(struct node*));
     temp->pre=NULL;
     temp->data=d;
     temp->next=NULL;
-    pos--;
-    while(pos!=1)
+     if(head==NULL)
+     printf("there are no elements in the list");
+    if(pos<1||pos>size+1)
+    printf("invalid position to insert");
+    else
     {
-        ptr=ptr->next;
-        pos--;
-    }
-    if(ptr->next==NULL)
-    { insert_at_end(head,d);
+   		 pos--;
+    	while(pos!=1)
+   	  {
+         ptr=ptr->next;
+         pos--;
+   	  }
+   	    if(ptr->next==NULL)
+		 { insert_at_end(head,d);
         
-    }
-    else {
-        ptr2=ptr->next;
+    	 }
+   	  else 
+   	  {
+			ptr2=ptr->next;
        
-        ptr->next=temp;
-        ptr2->pre=temp;
-        temp->pre=ptr;
-        temp->next=ptr2;
+        	ptr->next=temp;
+       		 ptr2->pre=temp;
+        	temp->pre=ptr;
+        	temp->next=ptr2;
+      }
     }
     return;
 }
-struct node *delete_at_beg(struct node *head)
+
+struct node *del_at_beg(struct node *head)
 {
     struct node*ptr=head;
     if(head==NULL)
@@ -133,29 +143,43 @@ struct node *del_at_end(struct node*head)
 }
 struct node *del_at_pos(struct node *head,int pos)
 {
-    struct node*ptr=head;
-    struct node*ptr1,*ptr2;
-    pos--;
-    while(pos!=0)
-    {
-        ptr=ptr->next;
-        pos--;
-    }
-    if(head==NULL)
-        printf("THERE ARE NO ELEMNTS IN THE LIST");
-    else if(ptr->next==NULL)
-        del_at_end(head);
-    else
-    {
 
-        ptr1=ptr->pre;
-        ptr2=ptr->next;
-        ptr1->next=ptr2;
-        ptr2->pre=ptr1;
-        free(ptr);
-    }
-    return head;
+	int size=count_of_nodes(head);
+	
+    struct node*ptr=head;
+    
+    struct node*ptr1,*ptr2;
+    if(head==NULL)
+    printf("THERE ARE NO ELEMENTS IN THE LIST TO DELETE");
+    if(pos<1||pos>size+1)
+    printf("this is invalid position to delete");
+    else
+	 {
+   		 pos--;
+   		 while(pos!=0)
+   		 {
+   		     ptr=ptr->next;
+     	   pos--;
+    	 }
+  
+   	   if(ptr->next==NULL)
+     	   del_at_end(head);
+     	 
+      else
+   		 {
+
+        	ptr1=ptr->pre;
+        	ptr2=ptr->next;
+        	ptr1->next=ptr2;
+        	ptr2->pre=ptr1;
+        	free(ptr);
+    	}
+ 	}
+ 	
+   return head;
+   
 }
+
 int main()
 {
     struct node *head=NULL;
@@ -168,14 +192,26 @@ int main()
     head=insert_at_end(head,99);
     show(head);
     size=count_of_nodes(head);
-    printf("%d",size);
-    insert_at_pos(head,4,93);
+    printf("the no of nodes=%d",size);
+    insert_at_pos(head,3,93);
     show(head);
-    head=delete_at_beg(head);
+    
+    head=del_at_beg(head);
     show(head);
     head=del_at_end(head);
     show(head);
+    size=count_of_nodes(head);
+    printf("the no of nodes=%d",size);
     head=del_at_pos(head,4);
     show(head);
+ }
+ 
+ 
+ 
+ 
+                                              
+ 
+ 
+    
+   
 
-}
