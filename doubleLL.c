@@ -88,12 +88,12 @@ void insert_at_pos(struct node *head,int pos,int d)
         pos--;
     }
     if(ptr->next==NULL)
-    {
-        ptr->next=temp;
-        temp->pre=ptr;
+    { insert_at_end(head,d);
+        
     }
     else {
         ptr2=ptr->next;
+       
         ptr->next=temp;
         ptr2->pre=temp;
         temp->pre=ptr;
@@ -171,10 +171,10 @@ int main()
     printf("%d",size);
     insert_at_pos(head,4,93);
     show(head);
-    //head=delete_at_beg(head);
-    //show(head);
-    //head=del_at_end(head);
-    //show(head);
+    head=delete_at_beg(head);
+    show(head);
+    head=del_at_end(head);
+    show(head);
     head=del_at_pos(head,4);
     show(head);
 
