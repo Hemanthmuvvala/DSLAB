@@ -57,7 +57,7 @@ struct node *insert_at_beg(struct node *head,int d)
     head=temp;
     return head;
 }
-struct node* insert_at_end(struct node *head, int d)
+void insert_at_end(struct node *head, int d)
 {
     struct node *temp,*ptr;
     temp=(struct node*)malloc(sizeof(struct node*));
@@ -71,7 +71,7 @@ struct node* insert_at_end(struct node *head, int d)
     }
     ptr->next=temp;
     temp->pre=ptr;
-    return head;
+     head;
 }
 void insert_at_pos(struct node *head,int pos,int d)
 {
@@ -110,7 +110,73 @@ void insert_at_pos(struct node *head,int pos,int d)
     }
     return;
 }
-
+void insert_befpos(struct node *head,int pos,int d)
+{
+  int size=count_of_nodes(head);
+    struct node *temp,*ptr=head;
+    struct node *ptr1=NULL;
+    temp=(struct node*)malloc(sizeof(struct node*));
+    temp->pre=NULL;
+    temp->data=d;
+    temp->next=NULL;
+     if(head==NULL)
+     printf("there are no elements in the list");
+    if(pos<=1||pos>size+1)
+    printf("invalid position to insert");
+    else
+    {
+   		 pos--;
+    	while(pos>1)
+   	  {
+         ptr=ptr->next;
+         pos--;
+   	  }
+   	    if(pos==2)
+		 { insert_at_beg(head,d);
+        
+    	 }
+   	  else 
+   	  {
+ptr1=ptr->pre;
+temp->pre=ptr->pre;
+ptr1->next=temp;
+ptr->pre=temp;
+temp->next=ptr;
+      }
+    }
+    return;
+}
+void insert_aftpos(struct node *head,int pos,int d)
+{
+  int size=count_of_nodes(head);
+    struct node *temp,*ptr=head;
+    struct node *ptr1;
+    temp=(struct node*)malloc(sizeof(struct node*));
+    temp->pre=NULL;
+    temp->data=d;
+    temp->next=NULL;
+     if(head==NULL)
+     printf("there are no elements in the list");
+    if(pos<=1||pos>size)
+    printf("invalid position to insert");
+    else
+    {
+   		 pos--;
+    	while(pos>0)
+   	  {
+         ptr=ptr->next;
+         pos--;
+   	  }
+   	  
+   	    ptr1=ptr->pre;
+   	    temp->next=ptr;
+   	    temp->pre=ptr1;
+   	    ptr1->next=temp;
+   	    ptr->pre=temp;
+   	  
+      }
+return ;
+}
 struct node *del_at_beg(struct node *head)
 {
     struct node*ptr=head;
@@ -151,8 +217,8 @@ struct node *del_at_pos(struct node *head,int pos)
     struct node*ptr1,*ptr2;
     if(head==NULL)
     printf("THERE ARE NO ELEMENTS IN THE LIST TO DELETE");
-    if(pos<1||pos>size+1)
-    printf("this is invalid position to delete");
+    if(pos<1||pos>size)
+    printf("\nthis is invalid position to delete");
     else
 	 {
    		 pos--;
@@ -179,7 +245,78 @@ struct node *del_at_pos(struct node *head,int pos)
    return head;
    
 }
+struct node *del_bef_pos(struct node *head,int pos)
+{
 
+	int size=count_of_nodes(head);
+	
+    struct node*ptr=head;
+    
+    struct node*ptr1,*ptr2;
+    if(head==NULL)
+    printf("THERE ARE NO ELEMENTS IN THE LIST TO DELETE");
+    if(pos<=1)
+    printf("\nthis is invalid position to delete");
+    else
+	 {
+   	   if(pos==size+1)
+     	   del_at_end(head);
+     	 else
+     	 {
+     	     pos--;
+   		 while(pos>1)
+   		 {
+   		     ptr=ptr->next;
+     	   pos--;
+    	 }
+   		 ptr1=ptr->next;
+   		 ptr1->pre=ptr->pre;
+   		 ptr->pre->next=ptr1;
+   		 free(ptr);
+         }
+    	
+    	
+ 	}
+ 	return head;
+}
+struct node *del_aft_pos(struct node *head,int pos)
+{
+
+	int size=count_of_nodes(head);
+	
+    struct node*ptr=head;
+    
+    struct node*ptr1,*ptr2;
+    if(head==NULL)
+    printf("THERE ARE NO ELEMENTS IN THE LIST TO DELETE");
+    if(pos<1||pos>size)
+    printf("\nthis is invalid position to delete");
+    else
+	 {
+   		 pos--;
+   		 while(pos!=0)
+   		 {
+   		     ptr=ptr->next;
+     	   pos--;
+    	 }
+  
+   	   if(ptr->next==NULL)
+     	   del_at_end(head);
+     	 
+      else
+   		 {
+
+        	ptr1=ptr->pre;
+        	ptr2=ptr->next;
+        	ptr1->next=ptr2;
+        	ptr2->pre=ptr1;
+        	free(ptr);
+    	}
+ 	}
+ 	
+   return head;
+   
+}
 int main()
 {
     struct node *head=NULL;
@@ -189,29 +326,26 @@ int main()
     printf("%d",head->data);
     head=insert_at_beg(head,45);
     show(head);
-    head=insert_at_end(head,99);
+    insert_at_end(head,99);
     show(head);
     size=count_of_nodes(head);
     printf("the no of nodes=%d",size);
     insert_at_pos(head,3,93);
     show(head);
-    
+    insert_befpos(head,4,33);
+    show(head);    
+    insert_aftpos(head,3,46);
+    show(head);
     head=del_at_beg(head);
     show(head);
-    head=del_at_end(head);
+   head=del_at_end(head);
     show(head);
     size=count_of_nodes(head);
     printf("the no of nodes=%d",size);
-    head=del_at_pos(head,4);
+    head=del_at_pos(head,5);
     show(head);
- }
- 
- 
- 
- 
-                                              
- 
- 
-    
-   
-
+    head=del_bef_pos(head,5);
+    show(head);
+    head=del_aft_pos(head,3);
+    show(head);
+}
