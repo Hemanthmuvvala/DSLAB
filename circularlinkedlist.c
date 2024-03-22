@@ -108,30 +108,33 @@ struct node *del_at_end(struct node *tail)
 }
 struct node *del_at_pos(struct node *tail,int pos)
 {
-struct node *ptr=tail->next;
-struct node *ptr1;
+
 		if(tail==NULL)
-		printf("there are no elemlents in the list");
-		if(pos==1)
-		{ del_at_beg(tail);}
+		{
+			printf("there are no elemlents in the list");
+		}
 		else
 		{	
+				struct node *ptr=tail->next;
+				struct node *ptr1;
 				pos--;
-				while(pos!=1)
+				while(pos>1)
 					{
-					ptr=ptr->next;
-					pos--;
+					 ptr=ptr->next;
+					 pos--;
+					 if(ptr->next==tail->next)
+						{
+							printf(" this is invalid position to delete");
+							return tail;
+						}
 					}
-					if(ptr->next==tail->next)
-					{printf(" this is invalid position to delete");}
-					 if(ptr->next==tail)
-					{del_at_end(tail);}
-					else
-					{ptr1=ptr->next;
-					ptr->next=ptr1->next;
-					free(ptr1);}
-		     
-		     }
+					
+						ptr1=ptr->next;
+						ptr->next=ptr1->next;
+						if(ptr1==tail)
+							tail=ptr1->next;
+						free(ptr1);
+					}
 		     return tail;
 }
 int main()
@@ -145,7 +148,7 @@ tail=insert_at_end(tail,20);
 show(tail);
 tail=insert_at_end(tail,39);
 show(tail);
-tail=insert_at_pos(tail,1,3);
+tail=insert_at_pos(tail,4,3);
 show(tail);
 tail=del_at_beg(tail);
 show(tail);
@@ -153,9 +156,11 @@ tail=del_at_end(tail);
 show(tail);
 tail=insert_at_end(tail,39);
 show(tail);
-tail=del_at_pos(tail,4);
+tail=del_at_pos(tail,5);
 show(tail);
 }
+
+
 
 
 
