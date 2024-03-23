@@ -4,7 +4,7 @@ void reverse( int arr[],int n)
 int i;
 
 printf(" The reversed array");
-for(int i=n;i>=0;i--)
+for(int i=n-1;i>=0;i--)
 {
 printf("%d\t",arr[i]);
   printf("\n");
