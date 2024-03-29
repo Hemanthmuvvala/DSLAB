@@ -134,7 +134,7 @@ struct node *del_at_pos(struct node *tail,int pos)
         ptr1=ptr->next;
         ptr->next=ptr1->next;
         if(ptr1==tail)
-            tail=ptr1->next;
+            tail=ptr;
         free(ptr1);
     }
     return tail;
