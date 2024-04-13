@@ -1,3 +1,4 @@
+//TO PERFORM LINEAR SEARCH
 #include<stdio.h>
 void main(){
 	int i,a[20],n,key,pos=-1;
