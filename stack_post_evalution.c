@@ -1,3 +1,4 @@
+
 #include<stdio.h>      //M H V N PAVAN KUMAR 
 #include<stdlib.h>      
 #include<string.h>
@@ -21,7 +22,7 @@ int isEmpty()
     else
         return 0;
 }
-void push( char c) //push function is to insert an element in stack
+void push( int x) //push function is to insert an element in stack
 {
 
 
@@ -30,21 +31,21 @@ void push( char c) //push function is to insert an element in stack
         return ;
     }
     top++;
-    stack[top]=c;
+    stack[top]=x;
 
 
 }
 //To delete the element of the stack
-char pop()
+int pop()
 {
     if(isEmpty())
         printf("stack underflow or stack is empty");
     else
-    {   char c;
+    {   int x;
 
-        c=stack[top];
+        x=stack[top];
         top--;
-        return c;
+        return x;
 
     }
 
@@ -130,7 +131,7 @@ void infixtopost()   //conerts infix to postfix expression
         postfix[j++]=pop();
     postfix[j]='\0';
 }
-  int evaluate()
+  int evaluate() //it evaluate the postfix expression
 {
 	int i,a,b;
 		for(i=0;i<strlen(postfix);i++)
@@ -167,14 +168,21 @@ void infixtopost()   //conerts infix to postfix expression
 
 }
 int main()
-{
-    printf("ENTER THE INFIX EXPRESSION  TO CONVERT TO POST FIX: ");
-    scanf("%s",infix);
-  //  gets(infix);
-    infixtopost();
-    show();
-    evaluate();
-    printf("%d",result);
-    return 0;
+{ 	int ans;
+    	printf("ENTER THE INFIX EXPRESSION  TO CONVERT TO POST FIX: ");
+ 
+    	scanf("%s",infix);
+ 
+    	infixtopost();
+ 
+    	show();
+ 
+   	ans=evaluate();
+ 
+   	printf("THE VALUE OF AFTER EVALUTION OF THE EXPRESSION:");
+ 
+   	 printf("%d",ans);
+ 
+    	return 0;
     
 }
