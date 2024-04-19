@@ -1,8 +1,9 @@
 #include<stdio.h>      //M H V N PAVAN KUMAR 
 #include<stdlib.h>      
 #include<string.h>
+#include<math.h>
 #define max 100     //global declaration of the array size.
-
+int result;
 char stack[max];
 int top=-1;
 char infix[max],postfix[max];
@@ -129,25 +130,40 @@ void infixtopost()   //conerts infix to postfix expression
         postfix[j++]=pop();
     postfix[j]='\0';
 }
-void evaluate(){
-int i,a,b;
-for(i=0;i<strlen(postfix);i++)
+  int evaluate()
 {
+	int i,a,b;
+		for(i=0;i<strlen(postfix);i++)
+		{
+				if (postfix[i]>='0'&& postfix[i]<='9')
+					push(postfix[i]-'0');
+				else
+			{
+				a=pop();
+				b=pop();
+				switch(postfix[i])
+				{
+					case '+':
+					push(b+a);
+					break;
+					case '-':
+					push(b-a);
+					break;
+					case '*':
+					push(b*a);
+					break;
+					case '/':
+					push(b/a);
+					break;
+					case '^':
+					push(pow(b,a));
+					break;
+				}		
+	
+			}
 
-
-
-
-
-
-
-
-
-}
-
-
-
-
-
+		}
+		return pop();
 
 }
 int main()
@@ -157,6 +173,8 @@ int main()
   //  gets(infix);
     infixtopost();
     show();
+    evaluate();
+    printf("%d",result);
     return 0;
     
 }
