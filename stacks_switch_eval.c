@@ -1,5 +1,6 @@
 
 
+
 #include<stdio.h>      //M H V N PAVAN KUMAR 
 #include<stdlib.h>      
 #include<string.h>
@@ -179,21 +180,35 @@ int main()
  
    	ans=evaluate();
  
-   	printf("THE VALUE OF AFTER EVALUTION OF THE EXPRESSION:");
- 
-   	 printf("%d",ans);
+   	 printf("THE VALUE OF AFTER EVALUTION OF THE EXPRESSION=%d\n",ans);
+	 
+
    	 
    	 while(1)
    	 {
    	     printf("1)TO ENTER INFIX EXPRESSION\n");
-   	     printf("2)TO DISPLAY ELEMENTS\n");
+   	     printf("2)TO CONVERT IT INTO POSTFIX EXPRESSION\n");
    	     printf("3)TO EVALUATE THE EXPRESSION\n");
    	     printf("4)TO QUIT\n");
    	     int c;
+		 scanf("%d",&c);
    	     switch(c)
    	     {
    	         
-   	         
+   	         	 case 1:
+			 printf("ENTER THE INFIX EXPRESSION");
+			 scanf("%s",infix);
+			 break;
+			 case 2:
+			 infixtopost();
+			 show();
+			 break;
+			 case 3:
+			 ans=evaluate();
+			 printf("THE VALUE OF EXPRESSION AFTER EVALUATION=%d\n",ans);
+			 break;
+			 case 4:
+			 exit(1);
    	         
    	         
    	         
@@ -208,4 +223,3 @@ int main()
     	return 0;
     
 }
-
