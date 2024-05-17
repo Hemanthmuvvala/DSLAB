@@ -1,4 +1,5 @@
 
+
 #include<stdio.h>      //M H V N PAVAN KUMAR 
 #include<stdlib.h>      
 #include<string.h>
@@ -91,8 +92,8 @@ int precedence(char c)// to check tthe precedence of the given expression.
     else {
         return 0;
     }
-}*/
-void infixtopost()   //conerts infix to postfix expression
+}
+/*void infixtopost()   //conerts infix to postfix expression
 {
     int i,j=0;
     char temp,c;
@@ -130,7 +131,7 @@ void infixtopost()   //conerts infix to postfix expression
     while(!isEmpty())
         postfix[j++]=pop();
     postfix[j]='\0';
-}
+}*/
   int evaluate() //it evaluate the postfix expression
 {
 	int i,a,b;
@@ -171,11 +172,11 @@ int main()
 { 	int ans;
     	printf("ENTER THE INFIX EXPRESSION  TO CONVERT TO POST FIX: ");
  
-    	scanf("%s",infix);
+    	scanf("%s",postfix);
  
-    	infixtopost();
+    	//infixtopost();
  
-    	show();
+    	//show();
  
    	ans=evaluate();
  
