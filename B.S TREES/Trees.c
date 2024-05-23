@@ -53,19 +53,19 @@ struct node *insert(struct node* root,int d)
 void postorder(struct node *root)
 {
 	if(root->left!=NULL)
-	inorder(root->left);
+	postorder(root->left);
 	if(root->right!=NULL)
-	inorder(root->right);
+	postorder(root->right);
 	printf("%d   ",root->data);
 }
 void preorder(struct node *root)
 {	
 	printf("%d  ",root->data);
 	if(root->left!=NULL)
-	inorder(root->left);
+	preorder(root->left);
 	
 	if(root->right!=NULL)
-	inorder(root->right);
+	preorder(root->right);
 	
 }
 int main()
